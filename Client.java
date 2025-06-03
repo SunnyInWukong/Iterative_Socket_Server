@@ -103,6 +103,6 @@ public class Client {
 
             System.out.println("Total Time: " + total + " ms");
             System.out.println("Average Time: " + average + " ms");
-        }
-    }
+        }//end while loop
+    }// end main method
 }
