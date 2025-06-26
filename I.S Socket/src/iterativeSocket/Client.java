@@ -59,7 +59,7 @@ public class Client {
 				BufferedReader cIn = new BufferedReader(new InputStreamReader(cSocket.getInputStream()));
 						){
 					long clientStart = System.nanoTime();
-					cOutput.println();
+					cOutput.println(commandLine);
 					String clientResponse = cIn.readLine();
 					long endClient = System.nanoTime();
 					

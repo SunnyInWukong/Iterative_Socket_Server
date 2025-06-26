@@ -50,7 +50,7 @@ public class Server {
 
 	private static String requestHandle(String trimRequest) { // getting starting time request
 		return switch (trimRequest) {
-		case "1" -> "Date amd Time: " + LocalDateTime.now();
+		case "1" -> "Date and Time: " + LocalDateTime.now();
 		case "2" -> {
 			Duration startTime = Duration.between(startingClock, LocalDateTime.now());
 			yield "Start time: " + startTime.toSeconds() + " seconds";
@@ -60,8 +60,8 @@ public class Server {
 			long usedMemory = timeRun.totalMemory() - timeRun.freeMemory();
 			yield "Memory Used: " + (usedMemory / (1024 * 1024)) + " MB";
 		}
-		case "4" -> runCommand("net state ");
-		case "5" -> runCommand("who's on ");
+		case "4" -> runCommand("netstat ");
+		case "5" -> runCommand("who ");
 		case "6" -> runCommand("ps -e");
 		default -> "Invalid choice/command. Choose 1 to 6 as valid command.";
 		};	
