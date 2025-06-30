@@ -6,16 +6,16 @@ import java.time.*;
 import java.util.*;
 
 public class Server {
-    private static final int PORT = 1159; // Port to listen on
-    private static final LocalDateTime startTime = LocalDateTime.now(); // Track server uptime
+    private static final int PORT = 1159; //port to listen on
+    private static final LocalDateTime startTime = LocalDateTime.now(); //track server uptime
 
     public static void main(String[] args) throws IOException {
         ServerSocket serverSocket = new ServerSocket(PORT); // creates the server listener // where it listens to
         System.out.println("Server started. Listening on port " + PORT);
 
-        while (true) { // Keep server running indefinitely
-            Socket clientSocket = serverSocket.accept(); // Accept a single client connection
-            handleClient(clientSocket); // Handle client request serially (no threads)
+        while (true) { //keep server running
+            Socket clientSocket = serverSocket.accept(); //accept a client connection
+            handleClient(clientSocket); //handle client request serially (no threads)
         }//end while loop
     }//end main method
     //===============================
@@ -23,14 +23,14 @@ public class Server {
     private static void handleClient(Socket socket) throws IOException {
         BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));  //to read from the socket/ client
         PrintWriter out = new PrintWriter(socket.getOutputStream(), true); //to write to the client
-      
-               
-        String request = in.readLine().trim(); // Read client request, ***had issues converting it to an int, so i kept it as a string for the switch menu
+
+
+        String request = in.readLine().trim(); // read client request, ***had issues converting it to an int, so i kept it as a string for the switch menu
         String response;
 
         //all the requests the client can make
         switch (request) {
-            case "1": 
+            case "1":
                 response = LocalDateTime.now().toString();
                 break;
             case "2":
@@ -52,16 +52,16 @@ public class Server {
                 break;
             default:
                 response = "Invalid request";
-        }//end switch-case 
+        }//end switch-case
 
-        out.println(response); // Send back the result
-        socket.close(); // Close the connection
+        out.println(response); //send the output
+        socket.close(); //close the connection
     }//end handleClient method
     //================================
 
     // Utility method to execute system commands and capture output
     private static String runCommand(String command) {
-        StringBuilder output = new StringBuilder(); 
+        StringBuilder output = new StringBuilder();
         try {
             Process process = Runtime.getRuntime().exec(command); //executes terminal command , process class used to execute tasks (code, input, output) 
             BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream())); //bufferedReader reading from the process inputStream
@@ -75,5 +75,5 @@ public class Server {
         return output.toString();
     }//end run command method
     //============================
-    
+
 }//end Server class
