@@ -30,7 +30,7 @@ public class Client {
 
             String command = in.nextLine();
 
-            if(command == "7") {//added an exit option to match the example in the video
+            if(command.equals("7")) {//added an exit option to match the example in the video
                 break;
             }
 
@@ -104,7 +104,7 @@ public class Client {
                 total += t;
             }//end for loop
 
-            double average = (double) total / times.size();
+            double average =  total / times.size();
 
             System.out.println("Total Time: " + total + " ms");
             System.out.println("Average Time: " + average + " ms");
